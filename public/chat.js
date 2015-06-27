@@ -8,6 +8,11 @@ window.onload = function(){
     var content = document.getElementById('content');
     var submitButton = document.getElementById('send');
 
+    var name = prompt('What is your name?', 'Guest');
+    if(name){
+        socket.emit('helloMessage',name);
+    }
+
     submitButton.onclick = function(){
         var text = field.value;
         socket.emit('send', {message: text});

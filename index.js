@@ -21,8 +21,15 @@ app.get('/', function(req, res){
 
 servIo.sockets.on('connection', function(client){
     //console.log('connected');
-    client.emit('message',{message: 'Welcome to the chat'});
+
     client.on('send', function(data){
         servIo.sockets.emit('message', {message: data.message});
+    });
+    client.on('helloMessage', function(data){
+        client.emit('message',{message: data + ', welcome to the chat'});
+        client.broadcast.emit('message',{message: data + ' joined to the chat'});
+    });
+    client.on('disconnect', function(client){
+        client.broadcast.emit('message',{message: 'somebody left the chat'});
     });
 });
