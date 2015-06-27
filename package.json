@@ -1,0 +1,11 @@
+{
+  "name": "Chat NodeJS",
+  "version": "1.0.0",
+  "description": "",
+  "depencies": {
+    "socket.io": "latest",
+    "express": "latest",
+    "jade": "latest"
+  },
+  "author": "Peter Shatalov"
+}
