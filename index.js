@@ -19,6 +19,10 @@ app.get('/', function(req, res){
     res.render('page');
 });
 
-servIo.sockets.on('connection', function(clinet){
+servIo.sockets.on('connection', function(client){
     //console.log('connected');
+    client.emit('message',{message: 'Welcome to the chat'});
+    client.on('send', function(data){
+        servIo.sockets.emit('message', {message: data.message});
+    });
 });
